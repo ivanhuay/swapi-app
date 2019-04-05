@@ -7,47 +7,35 @@ export const SUCCESS_MOVIES = 'SUCCESS_MOVIES ';
 export const SORT_MOVIES = 'SORT_MOVIES';
 export const GET_MOVIE = 'GET_MOVIE';
 
-function requestMovies() {
-  return {
-    type: REQUEST_MOVIES
-  }
-}
-function successMovies(response) {
-  return {
-    type: SUCCESS_MOVIES,
-    response
-  }
-}
-
-function errorMovies(){
-  return {
-    type: ERROR_MOVIES,
-  }
-}
-
-export function sortMovies(sortByStr){
-  return {
-    type: SORT_MOVIES,
-    sortByStr
-  }
-}
-export function getMovie(movieId){
-  return {
-    type: GET_MOVIE,
-    movieId
-  }
-}
-export function getAllMovies(){
-  return function(dispatch){
+const requestMovies = () => ({
+  type: REQUEST_MOVIES
+});
+const successMovies = response => ({
+  type: SUCCESS_MOVIES,
+  response
+});
+const errorMovies = () => ({
+  type: ERROR_MOVIES,
+});
+export const sortMovies = (sortByStr) => ({
+  type: SORT_MOVIES,
+  sortByStr
+});
+export const getMovie = (movieId) => ({
+  type: GET_MOVIE,
+  movieId
+});
+export function getAllMovies() {
+  return function(dispatch) {
     dispatch(requestMovies());
     return fetch(`https://swapi.co/api/films/`)
-      .then((response)=>{
+      .then((response) => {
         return response.json();
       })
-      .then((response)=>{
+      .then((response) => {
         return dispatch(successMovies(response.results));
       })
-      .catch(()=>{
+      .catch(() => {
         dispatch(errorMovies());
       });
   }

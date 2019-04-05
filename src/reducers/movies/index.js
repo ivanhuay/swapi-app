@@ -4,7 +4,7 @@ import {
   REQUEST_MOVIES,
   SORT_MOVIES,
   GET_MOVIE
-} from '../../store/actions';
+} from '../../actions/movies';
 const initialState = {
   movies: [],
   loading: false,

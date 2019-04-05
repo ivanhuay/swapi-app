@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Grid} from '../../components';
 import {connect} from 'react-redux';
-import {getAllMovies, sortMovies} from '../../store/actions';
+import {getAllMovies, sortMovies} from '../../actions/movies';
 class Home extends Component {
   constructor(props){
     super(props);

@@ -2,32 +2,32 @@ import React, {Component} from 'react';
 import fetch from 'isomorphic-unfetch';
 import {FilmDetail} from '../../components';
 import {Loading} from '../../components';
-export default class Detail extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-        film: false,
-        loading: false,
-        episode_id: props.match.params.episode_id
-    };
-  }
+import {connect} from 'react-redux';
+import {getMovie} from '../../actions/movie-detail';
+
+class Detail extends Component{
   componentDidMount(){
-    this.updateFilmData(this.state.episode_id);
-  }
-  updateFilmData(episode_id){
-    fetch(`https://swapi.co/api/films/${episode_id}`)
-    .then((response)=>{
-      return response.json();
-    })
-    .then((film)=>{
-      this.setState({film, loading: false});
-    });
+    this.props.getMovie(this.state.episode_id);
   }
   render(){
     return <div className="container">
       {
-        this.state.film ? <FilmDetail film={this.state.film}/> : <Loading />
+        !this.props.loading ? <FilmDetail film={this.props.film}/> : <Loading />
       }
     </div>
   }
 }
+function mapStateToProps(state) {
+  return {
+    film: state.currentMovie.data,
+    loading: state.currentMovie.loading,
+  };
+}
+export default connect(
+  mapStateToProps,
+  dispatch => {
+    return {
+      getMovie: (movieId)=> dispatch(getMovie(movieId))
+    }
+  }
+)(Detail);

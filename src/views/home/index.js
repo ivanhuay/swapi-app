@@ -3,6 +3,10 @@ import {Grid} from '../../components';
 import {connect} from 'react-redux';
 import {getAllMovies, sortMovies} from '../../store/actions';
 class Home extends Component {
+  constructor(props){
+    super(props);
+    console.log(props);
+  }
   componentDidMount(){
     this.props.getAllMovies();
   }
@@ -32,10 +36,10 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    movies: state.movies,
-    loading: state.loading,
-    error: state.error,
-    sortBy: state.sortBy
+    movies: state.movies.movies,
+    loading: state.movies.loading,
+    error: state.movies.error,
+    sortBy: state.movies.sortBy
   };
 }
 export default connect(

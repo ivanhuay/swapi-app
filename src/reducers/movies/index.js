@@ -4,7 +4,7 @@ import {
   REQUEST_MOVIES,
   SORT_MOVIES,
   GET_MOVIE
-} from './actions';
+} from '../../store/actions';
 const initialState = {
   movies:[],
   loading: false,
@@ -23,7 +23,7 @@ function sortBy(array, by){
   });
   return Array.from(sortedArray);
 }
-export function movieApp(state = initialState, action){
+export default function MovieReducer(state = initialState, action){
   switch (action.type) {
     case SUCCESS_MOVIES:
       return Object.assign({},

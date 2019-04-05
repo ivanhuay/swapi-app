@@ -5,14 +5,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import {movieApp} from './store/reducer';
-import logger from 'redux-logger';
-export const store = createStore(
-  movieApp,
-  applyMiddleware(thunkMiddleware, logger)
-);
+import {store} from './store';
+
 
 // store.subscribe(() => console.log(store.getState()))
 

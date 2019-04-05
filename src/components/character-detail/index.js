@@ -1,7 +1,7 @@
 import React from 'react';
-import './CharacterDetail.css';
+import styles from './styles.module.css';
 const CharacterDetail = ({character}) => (
-  <div className="character-data">
+  <div className={styles.root}>
     <h1>{character.name}</h1>
     <ul>
       <li>hair color: {character.hair_color}</li>

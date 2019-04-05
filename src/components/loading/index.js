@@ -1,7 +1,7 @@
 import React from 'react';
-import './Loading.css';
+import styles from './styles.module.css';
 const Loading = () => (
-  <div className="loading-container">
+  <div className={styles.root}>
     <p>loading...</p>
   </div>
 )

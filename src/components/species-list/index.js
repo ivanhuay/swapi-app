@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Loading from './Loading';
+import {Loading} from '../../components';
 export default class SpeciesList extends Component{
     constructor(props){
       super(props);

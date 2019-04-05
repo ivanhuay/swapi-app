@@ -8,10 +8,13 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {movieApp} from './store/reducer';
+import logger from 'redux-logger';
+export const store = createStore(
+  movieApp,
+  applyMiddleware(thunkMiddleware, logger)
+);
 
-export const store = createStore(movieApp, applyMiddleware(thunkMiddleware));
-
-store.subscribe(() => console.log(store.getState()))
+// store.subscribe(() => console.log(store.getState()))
 
 ReactDOM.render(
   <Provider store={store}>

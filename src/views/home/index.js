@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Grid from './Grid';
+import {Grid} from '../../components';
 import {connect} from 'react-redux';
-import {getAllMovies, sortMovies} from './store/actions';
+import {getAllMovies, sortMovies} from '../../store/actions';
 class Home extends Component {
   componentDidMount(){
     this.props.getAllMovies();
@@ -30,7 +30,6 @@ class Home extends Component {
   }
 }
 
-// export default Home;
 function mapStateToProps(state) {
   return {
     movies: state.movies,

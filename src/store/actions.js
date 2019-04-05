@@ -5,6 +5,7 @@ export const REQUEST_MOVIES = 'REQUEST_MOVIES';
 export const ERROR_MOVIES = 'ERROR_MOVIES';
 export const SUCCESS_MOVIES = 'SUCCESS_MOVIES ';
 export const SORT_MOVIES = 'SORT_MOVIES';
+export const GET_MOVIE = 'GET_MOVIE';
 
 function requestMovies() {
   return {
@@ -30,7 +31,12 @@ export function sortMovies(sortByStr){
     sortByStr
   }
 }
-
+export function getMovie(movieId){
+  return {
+    type: GET_MOVIE,
+    movieId
+  }
+}
 export function getAllMovies(){
   return function(dispatch){
     dispatch(requestMovies());

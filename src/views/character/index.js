@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import fetch from 'isomorphic-unfetch';
-import CharacterDetail from './CharacterDetail';
-import Loading from './Loading';
+import {CharacterDetail} from '../../components';
+import {Loading} from '../../components';
 export default class Detail extends Component{
   constructor(props){
     super(props);

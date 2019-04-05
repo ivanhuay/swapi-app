@@ -1,13 +1,13 @@
 import React from 'react';
-import './FilmDetail.css';
-import CharactersList from './CharactersList';
-import SpeciesList from './SpeciesList';
+import styles from './styles.module.css';
+import {CharacterList} from '../../components';
+import {SpeciesList} from '../../components';
 const FilmDetail = ({film}) =>(
-  <div className="film-data">
+  <div className={styles.root}>
     <h1>{film.title} - Episode {film.episode_id}</h1>
     <p>{film.opening_crawl}</p>
     <h3>Characters:</h3>
-    <CharactersList characters={film.characters} />
+    <CharacterList characters={film.characters} />
     <h3>Species:</h3>
     <SpeciesList species={film.species} />
     <h3>Aditional information:</h3>

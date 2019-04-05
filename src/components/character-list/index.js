@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Loading from './Loading';
+import {Loading} from '../../components';
 import {Link} from 'react-router-dom';
 export default class CharacterList extends Component{
     constructor(props){

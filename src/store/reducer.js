@@ -2,7 +2,8 @@ import {
   SUCCESS_MOVIES,
   ERROR_MOVIES,
   REQUEST_MOVIES,
-  SORT_MOVIES
+  SORT_MOVIES,
+  GET_MOVIE
 } from './actions';
 const initialState = {
   movies:[],

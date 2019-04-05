@@ -2,32 +2,33 @@ import React, {Component} from 'react';
 import fetch from 'isomorphic-unfetch';
 import {CharacterDetail} from '../../components';
 import {Loading} from '../../components';
-export default class Detail extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-        character: false,
-        loading: false,
-        id: props.match.params.id
-    };
-  }
+import {connect} from 'react-redux';
+import {getCharacter} from '../../actions/character';
+
+class Detail extends Component{
   componentDidMount(){
-    this.updateCharacterData(this.state.id);
+    this.props.getCharacter(this.props.match.params.id);
   }
   updateCharacterData(id){
-    fetch(`https://swapi.co/api/people/${id}/`)
-    .then((response)=>{
-      return response.json();
-    })
-    .then((character)=>{
-      this.setState({character, loading: false});
-    });
+    this.props.getCharacter(id);
   }
   render(){
     return <div className="container">
       {
-        this.state.character ? <CharacterDetail character={this.state.character}/> : <Loading />
+        !this.props.loading ? <CharacterDetail character={this.props.character}/> : <Loading />
       }
     </div>
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    character: state.character.data,
+    loading: state.character.loading,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  dispatch => ({getCharacter: (characterId) => dispatch(getCharacter(characterId))})
+)(Detail);

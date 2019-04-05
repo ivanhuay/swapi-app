@@ -6,14 +6,16 @@ import {
 } from 'redux';
 import {
   MoviesReducer,
-  MovieDetailReducer
+  MovieDetailReducer,
+  CharacterReducer
 } from '../reducers'
 
 
 export const store = createStore(
   combineReducers({
     movies:MoviesReducer,
-    currentMovie: MovieDetailReducer
+    currentMovie: MovieDetailReducer,
+    character: CharacterReducer
   }),
   applyMiddleware(thunkMiddleware, logger)
 );

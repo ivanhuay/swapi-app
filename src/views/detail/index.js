@@ -7,7 +7,7 @@ import {getMovie} from '../../actions/movie-detail';
 
 class Detail extends Component{
   componentDidMount(){
-    this.props.getMovie(this.state.episode_id);
+    this.props.getMovie(this.props.match.params.episode_id);
   }
   render(){
     return <div className="container">

@@ -6,4 +6,7 @@
   in-height: 100vh;
   align-content: center;
   justify-content: center;
+  @media (max-width: 425px){
+    grid-template-columns: repeat(auto-fit, 100%);
+  }
 }

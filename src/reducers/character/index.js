@@ -1,6 +1,8 @@
 const initialState = {
   loading: true,
-  data: {}
+  data: {},
+  details: [],
+  loadingDetails: true,
 }
 
 export default function CharacterReducer(state = initialState, action){
@@ -9,6 +11,10 @@ export default function CharacterReducer(state = initialState, action){
       return {...initialState}
     case 'SUCCESS_CHARACTER':
       return {...state, loading: false, data: action.data};
+    case 'REQUEST_DETAILS':
+      return {...state, loadingDetails: true};
+    case 'SUCCESS_DETAILS':
+      return {...state, loadingDetails: false, details: action.details}
     default:
         return state;
   }

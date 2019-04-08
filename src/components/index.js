@@ -5,3 +5,4 @@ export {default as Grid} from './grid';
 export {default as Loading} from './loading';
 export {default as SpeciesList} from './species-list';
 export {default as Thumb} from './thumb';
+export {default as NavBar} from './navbar';

@@ -2,6 +2,8 @@ import fetch from 'isomorphic-unfetch';
 
 export const requestCharacter = () => ({ type: 'REQUEST_CHARACTER'});
 export const successCharacter = data => ({type:'SUCCESS_CHARACTER', data});
+export const requestDetails = () => ({ type: 'REQUEST_DETAILS'});
+export const successDetails = details => ({type:'SUCCESS_DETAILS', details});
 
 export const getCharacter = (id) => {
   return (dispatch) => {
@@ -13,5 +15,20 @@ export const getCharacter = (id) => {
       .then((data)=>{
         dispatch(successCharacter(data));
       });
+  }
+}
+
+export const getDetails = (urls) => {
+  return (dispatch) => {
+    dispatch(requestDetails());
+    const detailPromises = urls.map((url) => {
+      return fetch(url).then((response) => {
+        return response.json();
+      })
+    });
+    return Promise.all(detailPromises)
+    .then((response)=>{
+      dispatch(successDetails(response));
+    })
   }
 }

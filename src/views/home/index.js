@@ -3,10 +3,6 @@ import {Grid} from '../../components';
 import {connect} from 'react-redux';
 import {getAllMovies, sortMovies} from '../../actions/movies';
 class Home extends Component {
-  constructor(props){
-    super(props);
-    console.log(props);
-  }
   componentDidMount(){
     this.props.getAllMovies();
   }
@@ -26,8 +22,9 @@ class Home extends Component {
           </label>
         </section>
         <section className="container">
-          {this.props.loading && <p>loading...</p>}
-          <Grid films={this.props.movies} />
+          {this.props.loading? <p>loading...</p> :
+            <Grid films={this.props.movies} />
+          }
         </section>
       </div>
     );

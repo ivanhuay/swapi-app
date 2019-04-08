@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import {Thumb} from '../../components';
 const Grid = ({films}) => (
   <div className={styles.root}>

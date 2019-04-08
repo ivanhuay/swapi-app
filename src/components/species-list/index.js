@@ -1,44 +1,43 @@
 import React, {Component} from 'react';
 import {Loading} from '../../components';
-export default class SpeciesList extends Component{
+import {connect} from 'react-redux';
+import {getSpecies} from '../../actions/character';
+
+class SpeciesList extends Component{
     constructor(props){
       super(props);
-      this.state = {
-        speciesUrls: props.species,
-        species : [],
-        loading: true
-      }
+      console.log(props);
     }
     componentDidUpdate(prevProps){
       if(prevProps.species !== this.props.species){
-        this.setState({speciesUrls:this.props.species, loading:true})
-          .then(()=>{
-            this.getSpeciesInfo();
-          })
+        this.props.getSpecies(this.props.species);
       }
     }
     componentDidMount(){
-      this.getSpeciesInfo();
-    }
-    getSpeciesInfo(){
-        const requests = this.state.speciesUrls.map((url)=>{
-          return fetch(url)
-            .then((response)=>{
-              return response.json();
-            })
-        });
-        return Promise.all(requests)
-          .then((species) => {
-            this.setState({species, loading: false});
-          })
+      this.props.getSpecies(this.props.species);
     }
     render(){
       return <div className="characters-list">
-        {this.state.loading ? <Loading/> : <ul>
-          {this.state.species.map((specie)=>(
+        {this.props.loading ? <Loading/> : <ul>
+          {this.props.speciesData.map((specie)=>(
             <li key={specie.name}>{specie.name}</li>
           ))}
         </ul>}
       </div>
     }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    speciesData: state.character.species,
+    loading: state.character.speciesLoading,
+  };
+}
+export default connect(
+  mapStateToProps,
+  dispatch => {
+      return {
+        getSpecies: (urls) => {dispatch(getSpecies(urls))}
+      }
+  })(SpeciesList);

@@ -9,7 +9,7 @@ export const successSpecies = species => ({type:'SUCCESS_SPECIES', species});
 
 export const getCharacter = (id) => {
   return (dispatch) => {
-    dispatch(requestCharacter);
+    dispatch(requestCharacter());
     return fetch(`https://swapi.co/api/people/${id}/`)
       .then((response)=>{
         return response.json();
@@ -26,7 +26,7 @@ export const getDetails = (urls) => {
     const detailPromises = urls.map((url) => {
       return fetch(url).then((response) => {
         return response.json();
-      })
+      });
     });
     return Promise.all(detailPromises)
       .then((response)=>{
@@ -37,10 +37,10 @@ export const getDetails = (urls) => {
 export const getSpecies = (speciesUrls) => {
   return (dispatch) => {
     dispatch(requestSpecies());
-    const speciesPromises = speciesUrls.map((url)=>{
+    const speciesPromises = speciesUrls.map((url) => {
       return fetch(url).then((response) => {
         return response.json();
-      })
+      });
     });
     return Promise.all(speciesPromises)
       .then((response)=>{
